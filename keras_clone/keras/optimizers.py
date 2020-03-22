@@ -300,6 +300,89 @@ class RMSprop(Optimizer):
         return dict(list(base_config.items()) + list(config.items()))
 
 
+class WAME(Optimizer):
+    """Weight-wise Adaptive learning rates with Moving average Estimator, as devised by Mosca and Magoulas, 2017.
+    This optimiser is more suited to mini-batch stochastic gradient descent than Rprop. It makes used of a
+    'per-weight acceleration factor', which acts as a learning-rate tailored to individual weights.
+
+    The default parameters are those recommended in the original paper.
+
+    This custom implementation was written whilst referring to existing code by Alan Mosca:
+    https://github.com/nitbix/keras-oldfork/blob/master/keras/optimizers.py
+
+    parameters:
+        learning_rate: symbolised as lambda, overall learning rate which is also applied to weight updates
+        alpha: weighting for exponential moving averages
+        eta_pos/neg: the multiplier for updating weights in the positive or negative direction
+        zeta_min/max: the min/max bounds for the per-weight acceleration factors
+    """
+    def __init__(self, learning_rate=0.001, alpha=0.9, eta_pos=1.2, eta_neg=0.1, zeta_min=0.01, zeta_max=100):
+        super(WAME, self).__init__(**kwargs)  # inherit methods from Optimiser parent class
+        self.__dict__.update(locals())
+        self.iterations = K.variable(0)
+        self.learning_rate = K.variable(learning_rate)
+        self.alpha = K.variable(alpha)
+        self.eta_pos = K.variable(eta_pos)
+        self.eta_neg = K.variable(eta_neg)
+        self.zeta_min = K.variable(zeta_min)
+        self.zeta_max = K.variable(zeta_max)
+
+    @interfaces.legacy_get_updates_support
+    @K.symbolic
+    def get_updates(self, loss, params):
+        grads = self.get_gradients(loss, params)  # params is a super attribute equal to self.weights
+        shapes = [K.int_shape(p) for p in params]  # dimensions of each array in weights
+        # each layer has an array of weights. We track our various values using arrays of the same
+        zs = [K.zeros(shape) for shape in shapes]  # Zs and thetas default to 0
+        thetas = [K.zeros(shape) for shape in shapes]
+        prev_grads = [K.zeros(shape) for shape in shapes]
+        zetas = [K.ones(shape) for shape in shapes]  # zetas default to 1
+        self.weights = [self.iterations] +  # TODO: figure-out how this part works.
+        self.updates = [K.update_add(self.iterations, 1)]
+
+        lr = self.learning_rate
+        # if self.initial_decay > 0:
+        #     lr *= (1. / (1. + self.decay * self.iterations))
+        #     self.updates.append(K.update_add(self.iterations, 1))
+
+        for p, grad, a, z, theta, prev_grad, zeta in zip(params, grads, zs, thetas, prev_grads, zetas):
+            # EARNEST CODE ---------------
+            if grad*prev_grad > 0:
+                zeta_temp = zeta*self.eta_pos
+            else:
+                zeta_temp = zeta*self.eta_neg
+            # clip new zeta
+            zeta_new = K.clip(zeta_temp, self.zeta_min, self.zeta_max)
+            z_new = self.alpha*z + (1-self.alpha)*zeta_new
+            theta_new = self.alpha*theta + (1-self.alpha)*K.square(grad)
+            delta_w = -self.learning_rate*z_new*grad*(1/theta_new)
+
+            # Apply constraints.
+            if getattr(p, 'constraint', None) is not None:
+                delta_w = p.constraint(delta_w)
+
+            # update weights and accumulators
+            self.updates.append(K.update(p, delta_w))
+            self.updates.append(K.update(zs, z_new))
+            self.updates.append(K.update(thetas, theta_new))
+            self.updates.append(K.update(zetas, z_new))
+            self.updates.append(K.update(prev_grad, p))
+
+        return self.updates
+    # TODO: understand if we need to overwrite get_weights()
+
+    def get_config(self):
+        config = {'learning_rate': float(K.get_value(self.learning_rate)),
+                  'alpha': float(K.get_value(self.alpha)),
+                  'eta_pos': float(K.get_value(self.eta_pos)),
+                  'eta_neg': float(K.get_value(self.eta_neg)),
+                  'zeta_min': float(K.get_value(self.zeta_min)),
+                  'zeta_max': float(K.get_value(self.zeta_max))
+                  }
+        base_config = super(WAME, self).get_config()
+        return dict(list(base_config.items()) + list(config.items()))
+
+
 class Adagrad(Optimizer):
     """Adagrad optimizer.
 
@@ -795,6 +878,7 @@ adadelta = Adadelta
 adam = Adam
 adamax = Adamax
 nadam = Nadam
+wame = WAME
 
 
 def serialize(optimizer):
@@ -823,6 +907,7 @@ def deserialize(config, custom_objects=None):
         'adamax': Adamax,
         'nadam': Nadam,
         'tfoptimizer': TFOptimizer,
+        'wame': WAME
     }
     # Make deserialization case-insensitive for built-in optimizers.
     if config['class_name'].lower() in all_classes:
