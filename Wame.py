@@ -40,9 +40,9 @@ class Wame(Optimizer):
             # Line 9
             new_z = self.alpha * z + (1 - self.alpha) * new_zeta
             # Line 10
-            new_theta = self.alpha * theta + (1 - self.alpha) * K.square(grad)
+            new_theta = self.alpha * theta + (1 - self.alpha) #* K.square(grad)
             # Line 11
-            weight_delta = -new_z * grad * (1/new_theta)
+            weight_delta = -0.1/new_z * grad * (1/new_theta)
             # TODO: Figure this out! It seems like the theta part in particular seems to be breaking the calculation
             #    Also, it seems like we should be taking the sign of grad rather than multiplying it directly.
             # weight_delta = -new_z * (grad/new_theta)
