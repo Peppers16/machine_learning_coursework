@@ -22,14 +22,14 @@ class Wame(Optimizer):
         old_grads = [K.zeros(shape) for shape in shapes]
         zetas = [K.ones(shape) for shape in shapes]
         zs = [K.zeros(shape) for shape in shapes]
-        thetas = [K.zeros(shape) for shape in shapes]
-        self.weights = [self.iterations] + thetas
+        # thetas = [K.zeros(shape) for shape in shapes]
+        self.weights = [self.iterations] # + thetas
 
         # prev_weight_deltas = [K.zeros(shape) for shape in shapes]
         # self.weights = delta_ws + old_grads # TODO: understand self.weights
         self.updates = []
 
-        for param, grad, old_grad, zeta, z, theta in zip(params, grads, old_grads, zetas, zs, thetas):
+        for param, grad, old_grad, zeta, z in zip(params, grads, old_grads, zetas, zs):
             # Line 4 to 8
             new_zeta = K.switch(
                 K.greater(grad * old_grad, 0),
@@ -43,7 +43,7 @@ class Wame(Optimizer):
             # Line 9
             new_z = self.alpha * z + (1 - self.alpha) * new_zeta
             # Line 10
-            new_theta = self.alpha_b * theta + (1 - self.alpha_b) * K.square(grad)
+            # new_theta = self.alpha_b * theta + (1 - self.alpha_b) * K.square(grad)
             # Line 11
             # weight_delta = -self.lr/new_z * grad * (1/(new_theta + 1e-11))  # added epsilon to prevent zero division
             weight_delta = -self.lr * (new_zeta/new_z) * grad # * (1 / K.sqrt(new_theta + 1e-11))  # added epsilon to prevent zero division
@@ -62,7 +62,7 @@ class Wame(Optimizer):
             self.updates.append(K.update(zeta, new_zeta))
             self.updates.append(K.update(old_grad, grad))
             self.updates.append(K.update(z, new_z))
-            self.updates.append(K.update(theta, new_theta))
+            # self.updates.append(K.update(theta, new_theta))
 
         return self.updates
 
