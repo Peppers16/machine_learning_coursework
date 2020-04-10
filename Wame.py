@@ -7,6 +7,7 @@ __name__ = "wame"
 class Wame(Optimizer):
     def __init__(self, alpha=0.9, alpha_b=0.99, eta_pos=1.2, eta_neg=0.1, zeta_min=0.01, zeta_max=100, lr=0.01, **kwargs):
         super(Wame, self).__init__(**kwargs)
+        self.iterations = K.variable(0)
         self.alpha = K.variable(alpha, name='alpha')
         self.alpha_b = K.variable(alpha_b, name='alpha_b')
         self.eta_pos = K.variable(eta_pos, name='eta_pos')
@@ -22,6 +23,7 @@ class Wame(Optimizer):
         zetas = [K.ones(shape) for shape in shapes]
         zs = [K.zeros(shape) for shape in shapes]
         thetas = [K.zeros(shape) for shape in shapes]
+        self.weights = [self.iterations] + thetas
 
         # prev_weight_deltas = [K.zeros(shape) for shape in shapes]
         # self.weights = delta_ws + old_grads # TODO: understand self.weights
@@ -43,7 +45,8 @@ class Wame(Optimizer):
             # Line 10
             new_theta = self.alpha_b * theta + (1 - self.alpha_b) * K.square(grad)
             # Line 11
-            weight_delta = -self.lr/new_z * grad * (1/(new_theta + 1e-11))  # added epsilon to prevent zero division
+            # weight_delta = -self.lr/new_z * grad * (1/(new_theta + 1e-11))  # added epsilon to prevent zero division
+            weight_delta = -self.lr * (new_zeta/new_z) * grad # * (1 / K.sqrt(new_theta + 1e-11))  # added epsilon to prevent zero division
             # TODO: Figure this out! It seems like the theta part in particular seems to be breaking the calculation
             #    Also, it seems like we should be taking the sign of grad rather than multiplying it directly.
             # weight_delta = -new_z * (grad/new_theta)
