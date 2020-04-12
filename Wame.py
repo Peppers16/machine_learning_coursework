@@ -5,7 +5,8 @@ __name__ = "wame"
 
 
 class Wame(Optimizer):
-    def __init__(self, alpha=0.9, alpha_b=0.99, eta_pos=1.2, eta_neg=0.1, zeta_min=0.01, zeta_max=100, lr=0.01, **kwargs):
+    def __init__(self, alpha=0.9, alpha_b=0.999, eta_pos=1.2, eta_neg=0.1, zeta_min=0.01, zeta_max=100
+                 , lr=0.01, theta_pow=1, **kwargs):
         super(Wame, self).__init__(**kwargs)
         self.iterations = K.variable(0)
         self.alpha = K.variable(alpha, name='alpha')
@@ -15,6 +16,7 @@ class Wame(Optimizer):
         self.zeta_min = K.variable(zeta_min, name='zeta_min')
         self.zeta_max = K.variable(zeta_max, name='zeta_max')
         self.lr = K.variable(lr, name='lr')
+        self.theta_pow = K.variable(theta_pow, name='theta_pow')
 
     def get_updates(self, params, loss):
         grads = self.get_gradients(loss, params)
@@ -22,14 +24,14 @@ class Wame(Optimizer):
         old_grads = [K.zeros(shape) for shape in shapes]
         zetas = [K.ones(shape) for shape in shapes]
         zs = [K.zeros(shape) for shape in shapes]
-        # thetas = [K.zeros(shape) for shape in shapes]
+        thetas = [K.zeros(shape) for shape in shapes]
         self.weights = [self.iterations] # + thetas
 
         # prev_weight_deltas = [K.zeros(shape) for shape in shapes]
         # self.weights = delta_ws + old_grads # TODO: understand self.weights
         self.updates = []
 
-        for param, grad, old_grad, zeta, z in zip(params, grads, old_grads, zetas, zs):
+        for param, grad, old_grad, zeta, z, theta in zip(params, grads, old_grads, zetas, zs, thetas):
             # Line 4 to 8
             new_zeta = K.switch(
                 K.greater(grad * old_grad, 0),
@@ -43,10 +45,10 @@ class Wame(Optimizer):
             # Line 9
             new_z = self.alpha * z + (1 - self.alpha) * new_zeta
             # Line 10
-            # new_theta = self.alpha_b * theta + (1 - self.alpha_b) * K.square(grad)
+            new_theta = self.alpha_b * theta + (1 - self.alpha_b) * K.square(grad)
             # Line 11
-            # weight_delta = -self.lr/new_z * grad * (1/(new_theta + 1e-11))  # added epsilon to prevent zero division
-            weight_delta = -self.lr * (new_zeta/new_z) * grad # * (1 / K.sqrt(new_theta + 1e-11))  # added epsilon to prevent zero division
+            weight_delta = -self.lr/new_z * grad #/ (K.pow(new_theta, self.theta_pow) + 1e-11)  # added epsilon to prevent zero division
+            # weight_delta = -self.lr * (new_zeta/new_z) * grad # * (1 / K.sqrt(new_theta + 1e-11))  # added epsilon to prevent zero division
             # TODO: Figure this out! It seems like the theta part in particular seems to be breaking the calculation
             #    Also, it seems like we should be taking the sign of grad rather than multiplying it directly.
             # weight_delta = -new_z * (grad/new_theta)
@@ -62,7 +64,7 @@ class Wame(Optimizer):
             self.updates.append(K.update(zeta, new_zeta))
             self.updates.append(K.update(old_grad, grad))
             self.updates.append(K.update(z, new_z))
-            # self.updates.append(K.update(theta, new_theta))
+            self.updates.append(K.update(theta, new_theta))
 
         return self.updates
 
