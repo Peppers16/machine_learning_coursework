@@ -2,12 +2,11 @@ from keras.optimizers import Optimizer
 from keras import backend as K
 
 
-
 class WameAdapted(Optimizer):
-    '''
+    """
     WAME algorithm as described in Mosca Maglouas, with a changed update:
     update now follows the one used by Mosca (see WameMosca.py).
-    '''
+    """
     def __init__(self, lr=0.001, beta=0.9, eta_plus=1.2, eta_minus=0.1, zeta_min=0.01, zeta_max=100, **kwargs):
         super(WameAdapted, self).__init__(**kwargs)
         self.iterations = K.variable(0)
@@ -45,7 +44,7 @@ class WameAdapted(Optimizer):
             # Line 10
             theta_new = (self.beta * theta) + (1. - self.beta) * K.square(grad)
             # Line 11
-            weight_delta = - self.lr * zeta_new / z_new * grad / (K.sqrt(theta_new) + 1e-11)
+            weight_delta = - self.lr / z_new * grad / (K.sqrt(theta_new) + 1e-11)
             # Line 12
             new_param = param + weight_delta
 
