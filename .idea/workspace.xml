@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7cb8fbf7-2668-45bd-8c2b-9211c9842e56" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="WAME_from_RPROP" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="F:\Josh Documents (HDD)\OneDrive\Documents\Birkbeck\Machine Learning\Coursework\ml_cw\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZUffTx9CKwXb176kISaOeqRH0g" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Josh Documents (HDD)\OneDrive\Documents\Birkbeck\Machine Learning\Coursework\ml_cw" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Josh Documents (HDD)\OneDrive\Documents\Birkbeck\Machine Learning\Coursework\ml_cw" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7cb8fbf7-2668-45bd-8c2b-9211c9842e56" name="Default Changelist" comment="" />
+      <created>1584898696788</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584898696788</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Written bulk of WAME optimiser code (I hope!)">
+      <created>1584907279750</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584907279751</updated>
+    </task>
+    <task id="LOCAL-00002" summary="WAME written from RPROP framework. Currently weights are not working">
+      <created>1585426160262</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585426160262</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Successfully copied Alan">
+      <created>1586455959076</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586455959076</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Tweaks">
+      <created>1586462741041</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1586462741041</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Tweaks">
+      <created>1586463162223</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1586463162223</updated>
+    </task>
+    <task id="LOCAL-00006" summary="As paper, but with second alpha, a learning rate, and an epsilon">
+      <created>1586522782142</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1586522782142</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Seems to be working after dropping theta">
+      <created>1586524160190</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586524160190</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Commented out Theta. Go with this">
+      <created>1586524401471</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1586524401471</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Evaluation now does multiple experiments. &#10;WameMosca copied from Alan.">
+      <created>1586534060746</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586534060773</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Notebook worked on. Adam results complete. yaml updated.">
+      <created>1586698809215</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1586698809215</updated>
+    </task>
+    <task id="LOCAL-00011" summary="WameMoscaAdapted is now working as expected, but refactored to my style">
+      <created>1586706786298</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1586706786298</updated>
+    </task>
+    <task id="LOCAL-00012" summary="WameMoscaAdapted self.updates corrected to allow CallBacks.">
+      <created>1586710358998</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1586710358998</updated>
+    </task>
+    <task id="LOCAL-00013" summary="WameAdapted dropped zeta to resemble paper. Re-ran Wame results.">
+      <created>1586792701483</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1586792701523</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Did a correction with softmax instead of sigmoid">
+      <created>1587267790956</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1587267790956</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Final Submission">
+      <created>1587315344958</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1587315344958</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Written bulk of WAME optimiser code (I hope!)" />
+    <MESSAGE value="WAME written from RPROP framework. Currently weights are not working" />
+    <MESSAGE value="Successfully copied Alan" />
+    <MESSAGE value="Tweaks" />
+    <MESSAGE value="As paper, but with second alpha, a learning rate, and an epsilon" />
+    <MESSAGE value="Seems to be working after dropping theta" />
+    <MESSAGE value="Commented out Theta. Go with this" />
+    <MESSAGE value="Evaluation now does multiple experiments. &#10;WameMosca copied from Alan." />
+    <MESSAGE value="Notebook worked on. Adam results complete. yaml updated." />
+    <MESSAGE value="WameMoscaAdapted is now working as expected, but refactored to my style" />
+    <MESSAGE value="WameMoscaAdapted self.updates corrected to allow CallBacks." />
+    <MESSAGE value="WameAdapted dropped zeta to resemble paper. Re-ran Wame results." />
+    <MESSAGE value="Did a correction with softmax instead of sigmoid" />
+    <MESSAGE value="Final Submission" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Submission" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="533" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586707208735">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="533" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1586707208735" />
+    <state x="271" y="0" key="CommitChangelistDialog2" timestamp="1592747787762">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1173" y="307" key="CommitChangelistDialog2/0.0.1920.1040/-1366.307.1366.728@-1366.307.1366.728" timestamp="1585426155253" />
+    <state x="271" y="0" key="CommitChangelistDialog2/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1592747787762" />
+    <state x="651" y="170" key="FileChooserDialogImpl" timestamp="1587480997823">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-903" y="426" key="FileChooserDialogImpl/0.0.1920.1040/-1366.307.1366.728@-1366.307.1366.728" timestamp="1586362055967" />
+    <state x="651" y="170" key="FileChooserDialogImpl/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1587480997823" />
+    <state x="612" y="231" key="RollbackChangesDialog" timestamp="1592747730943">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="612" y="231" key="RollbackChangesDialog/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1592747730943" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1586896487144">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1586896487144" />
+    <state x="380" y="160" key="Vcs.Push.Dialog.v2" timestamp="1587315354432">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1091" y="404" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1366.307.1366.728@-1366.307.1366.728" timestamp="1585426168332" />
+    <state x="380" y="160" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1587315354432" />
+    <state x="-987" y="495" key="com.intellij.ide.util.TipDialog" timestamp="1587480928547">
+      <screen x="-1366" y="307" width="1366" height="728" />
+    </state>
+    <state x="-987" y="495" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1366.307.1366.728@-1366.307.1366.728" timestamp="1587480928547" />
+    <state x="533" y="269" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1587298765820" />
+    <state x="643" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1586528180841">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="643" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1586528180841" />
+    <state x="604" y="311" width="810" height="417" key="git4idea.merge.GitMergeDialog" timestamp="1592747748896">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="604" y="311" width="810" height="417" key="git4idea.merge.GitMergeDialog/0.0.1920.1040/-1366.307.1366.728@0.0.1920.1040" timestamp="1592747748896" />
+  </component>
+</project>
